@@ -1,0 +1,45 @@
+
+step 0 :
+        collect the dataset for training custom model
+         create a folder with train_data name within the folder create another two folders 1.images
+                                                                                           2.labels
+         0.1 now in images folder split the images into training(with 80% of imsges) and validation(with 20% of images)
+         0.2 label the images with labelimg exe file and split the labeled files into train(80%) and validation(20%). 
+
+         0.3 upload the train_data.zip file into the coolaboratory 
+
+
+
+step 1 : 
+         !git clone https://github.com/ultralytics/yolov5  # clone
+         %cd yolov5
+         %pip install -qr requirements.txt comet_ml  # install
+
+         import torch
+         import utils
+         display = utils.notebook_init()  # checks
+
+step 2 :
+        %cd data
+         #here download the coco128.yaml file and modify the file according to your requirement like
+           in my case;
+                      train: ../train_data/images/train/  
+                      val: ../train_data/images/val/  
+                      # Classes
+                      names:
+                          0: Hii
+                          1: I lov U
+                          2: I
+                          3: ok
+                          4: super
+        after modification upload the file within the same folder.
+
+
+step 3 :
+       !python train.py --img 640 --batch 16 --epochs 3 --data coco128.yaml --weights yolov5s.pt --cache
+
+
+
+      after training of the model you will get weights file [ best.pt and last.pt ]
+      use these weights in teh code.
+
